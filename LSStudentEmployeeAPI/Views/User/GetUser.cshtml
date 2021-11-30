@@ -1,0 +1,155 @@
+﻿@model IEnumerable<LSStudentEmployeeAPI.Models.User>
+
+@{
+    ViewData["Title"] = "GetUser";
+}
+
+<h1>GetUser</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.account_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.login_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.timezone_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.created_by)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_payroll)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_trusted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.first_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.last_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.employee_code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.activated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_hidden)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.uuid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.notes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_private)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hours_preferred)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hours_max)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hourly_rate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.account_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.login_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.timezone_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.created_by)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_payroll)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_trusted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.first_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.last_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employee_code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.activated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_hidden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.uuid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_private)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hours_preferred)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hours_max)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hourly_rate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

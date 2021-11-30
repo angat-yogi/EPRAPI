@@ -20,6 +20,8 @@ namespace LSStudentEmployeeAPI.Models
         public DbSet<ShiftLead> ShiftLead { get; set; }
         public DbSet<TechCheck> TechCheck { get; set; }
         public DbSet<BagCheck> BagChecks { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Shift> Shifts { get; set; }
         //public DbSet<FTEReview> FTEReviews { get; set; }
     }
 }

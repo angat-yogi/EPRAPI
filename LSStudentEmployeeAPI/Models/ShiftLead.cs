@@ -12,7 +12,6 @@ namespace LSStudentEmployeeAPI.Models
         public int SLID { get; set; }
         public string SLName { get; set; }
         public DateTime Date { get; set; }
-
         public string Block { get; set; }
 
     }
