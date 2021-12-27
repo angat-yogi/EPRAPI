@@ -230,8 +230,8 @@ namespace LSStudentEmployeeAPI.Migrations
                     b.Property<string>("first_name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("hourly_rate")
-                        .HasColumnType("int");
+                    b.Property<double>("hourly_rate")
+                        .HasColumnType("float");
 
                     b.Property<int>("hours_max")
                         .HasColumnType("int");

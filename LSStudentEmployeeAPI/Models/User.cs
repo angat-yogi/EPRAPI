@@ -28,6 +28,6 @@ namespace LSStudentEmployeeAPI.Models
         public bool is_private      {get; set;}
         public int hours_preferred  {get; set;}
         public int hours_max        {get; set;}
-        public int hourly_rate { get; set; }
+        public double hourly_rate { get; set; }
     }
 }

@@ -36,14 +36,14 @@ namespace LSStudentEmployeeAPI.Controllers
             return obj;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<BagCheck>> Post(BagCheck bag)
-        {           
-            _context.BagChecks.AddAsync(bag);
-            await  _context.SaveChangesAsync();
-            return CreatedAtAction("GetBagChecks", new { id = bag.Id }, bag);
+        //[HttpPost]
+        //public async Task<ActionResult<BagCheck>> Post(BagCheck bag)
+        //{           
+        //    //_context.BagChecks.AddAsync(bag);
+        //    await  _context.SaveChangesAsync();
+        //    return CreatedAtAction("GetBagChecks", new { id = bag.Id }, bag);
               
-        }
+        //}
 
 
 
