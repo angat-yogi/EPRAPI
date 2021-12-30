@@ -42,16 +42,16 @@ namespace LSStudentEmployeeAPI.Controllers
             {
 
                 var joke = JsonConvert.DeserializeObject<WIWResponse>(response);
-
                 foreach (var item in joke.Users)
                 {
                     if (_context.Users.Find(item.id)==null)
                     {
+                        
                         _context.Users.Add(item);
                         _context.SaveChanges();
+                    
                     }
                 }
-
                 var a = await _context.Users.ToListAsync();
                 return a;
             }

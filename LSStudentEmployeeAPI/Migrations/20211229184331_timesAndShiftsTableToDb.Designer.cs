@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LSStudentEmployeeAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211222140517_initialComit")]
-    partial class initialComit
+    [Migration("20211229184331_timesAndShiftsTableToDb")]
+    partial class timesAndShiftsTableToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -138,18 +138,97 @@ namespace LSStudentEmployeeAPI.Migrations
 
             modelBuilder.Entity("LSStudentEmployeeAPI.Models.Shift", b =>
                 {
-                    b.Property<int>("ShiftId")
+                    b.Property<long>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("end")
+                    b.Property<int?>("ShiftResponseId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TimesResponseTRId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("account_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("acknowledged")
+                        .HasColumnType("int");
+
+                    b.Property<string>("acknowledged_at")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("start")
+                    b.Property<bool>("actionable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("alerted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("block_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("break_time")
+                        .HasColumnType("int");
+
+                    b.Property<string>("color")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ShiftId");
+                    b.Property<string>("created_at")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("creator_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("end_time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("instances")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("is_open")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("linked_users")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("location_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("notified_at")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("position_id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("published")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("published_date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("shiftchain_key")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("site_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("start_time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("updated_at")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("user_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ShiftResponseId");
+
+                    b.HasIndex("TimesResponseTRId");
 
                     b.ToTable("Shifts");
                 });
@@ -173,6 +252,50 @@ namespace LSStudentEmployeeAPI.Migrations
                     b.HasKey("SLID");
 
                     b.ToTable("ShiftLead");
+                });
+
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.ShiftResponse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("end")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("start")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShiftResponses");
+                });
+
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.Site", b =>
+                {
+                    b.Property<long>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("TimesResponseTRId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("account_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("location_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("TimesResponseTRId");
+
+                    b.ToTable("Sites");
                 });
 
             modelBuilder.Entity("LSStudentEmployeeAPI.Models.TechCheck", b =>
@@ -204,6 +327,107 @@ namespace LSStudentEmployeeAPI.Migrations
                     b.ToTable("TechCheck");
                 });
 
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.Time", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("TimesResponseTRId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("account_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("alert_type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("break_hours")
+                        .HasColumnType("int");
+
+                    b.Property<string>("created_at")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("creator_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("end_time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("hourly_rate")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("is_alerted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("is_approved")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("length")
+                        .HasColumnType("float");
+
+                    b.Property<int>("location_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("modified_by")
+                        .HasColumnType("int");
+
+                    b.Property<string>("notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("position_id")
+                        .HasColumnType("int");
+
+                    b.Property<long>("shift_id")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("site_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("split_time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("start_time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sync_hash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sync_id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("updated_at")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("user_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("TimesResponseTRId");
+
+                    b.ToTable("Times");
+                });
+
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.TimesResponse", b =>
+                {
+                    b.Property<int>("TRId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("end")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("start")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TRId");
+
+                    b.ToTable("TimesResponses");
+                });
+
             modelBuilder.Entity("LSStudentEmployeeAPI.Models.User", b =>
                 {
                     b.Property<int>("id")
@@ -211,7 +435,10 @@ namespace LSStudentEmployeeAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ShiftId")
+                    b.Property<int?>("ShiftResponseId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TimesResponseTRId")
                         .HasColumnType("int");
 
                     b.Property<int>("account_id")
@@ -279,7 +506,9 @@ namespace LSStudentEmployeeAPI.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("ShiftId");
+                    b.HasIndex("ShiftResponseId");
+
+                    b.HasIndex("TimesResponseTRId");
 
                     b.ToTable("Users");
                 });
@@ -295,6 +524,24 @@ namespace LSStudentEmployeeAPI.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.Shift", b =>
+                {
+                    b.HasOne("LSStudentEmployeeAPI.Models.ShiftResponse", null)
+                        .WithMany("Shifts")
+                        .HasForeignKey("ShiftResponseId");
+
+                    b.HasOne("LSStudentEmployeeAPI.Models.TimesResponse", null)
+                        .WithMany("shifts")
+                        .HasForeignKey("TimesResponseTRId");
+                });
+
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.Site", b =>
+                {
+                    b.HasOne("LSStudentEmployeeAPI.Models.TimesResponse", null)
+                        .WithMany("sites")
+                        .HasForeignKey("TimesResponseTRId");
+                });
+
             modelBuilder.Entity("LSStudentEmployeeAPI.Models.TechCheck", b =>
                 {
                     b.HasOne("LSStudentEmployeeAPI.Models.Employee", "Employee")
@@ -306,15 +553,39 @@ namespace LSStudentEmployeeAPI.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("LSStudentEmployeeAPI.Models.User", b =>
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.Time", b =>
                 {
-                    b.HasOne("LSStudentEmployeeAPI.Models.Shift", null)
-                        .WithMany("users")
-                        .HasForeignKey("ShiftId");
+                    b.HasOne("LSStudentEmployeeAPI.Models.TimesResponse", null)
+                        .WithMany("times")
+                        .HasForeignKey("TimesResponseTRId");
                 });
 
-            modelBuilder.Entity("LSStudentEmployeeAPI.Models.Shift", b =>
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.User", b =>
                 {
+                    b.HasOne("LSStudentEmployeeAPI.Models.ShiftResponse", null)
+                        .WithMany("users")
+                        .HasForeignKey("ShiftResponseId");
+
+                    b.HasOne("LSStudentEmployeeAPI.Models.TimesResponse", null)
+                        .WithMany("users")
+                        .HasForeignKey("TimesResponseTRId");
+                });
+
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.ShiftResponse", b =>
+                {
+                    b.Navigation("Shifts");
+
+                    b.Navigation("users");
+                });
+
+            modelBuilder.Entity("LSStudentEmployeeAPI.Models.TimesResponse", b =>
+                {
+                    b.Navigation("shifts");
+
+                    b.Navigation("sites");
+
+                    b.Navigation("times");
+
                     b.Navigation("users");
                 });
 #pragma warning restore 612, 618
